@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  java-spring-backend:
+    build:
+      context: ./java-spring-backend
+    container_name: java-spring-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - python-service
+    networks:
+      - insignite-network
+  
+
+  python-service:
+    build:
+      context: ./python-service
+    container_name: python-service
+    ports:
+      - "5000:5000"
+    networks:
+      - insignite-network
+
+networks:
+  insignite-network:
+    driver: bridge
