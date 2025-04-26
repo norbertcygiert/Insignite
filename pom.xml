@@ -54,7 +54,7 @@
 	</dependencies>
 
 	<build>
-		<sourceDirectory>java-spring-backend/src/main/java/com/insignite</sourceDirectory>
+		<sourceDirectory>java-spring-backend/src/main/java</sourceDirectory>
 		<outputDirectory>java-spring-backend/target/classes</outputDirectory>
 		<plugins>
 			<plugin>
