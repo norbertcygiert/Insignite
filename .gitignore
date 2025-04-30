@@ -1,9 +1,9 @@
 HELP.md
 target/
-java-spring-backend/src/test/
+java-spring-backend/src/test/** */
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-!**/src/test/
+!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
