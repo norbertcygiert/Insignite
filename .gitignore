@@ -3,7 +3,7 @@ target/
 java-spring-backend/src/test/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-!**/src/test/**/target/
+!**/src/test/
 
 ### STS ###
 .apt_generated
