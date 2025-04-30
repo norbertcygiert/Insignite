@@ -20,7 +20,7 @@ public class FileController {
 
 	@PostMapping("/send-file")
 	public ResponseEntity<String> sendToFlask(@RequestParam("file") MultipartFile file) throws IOException {
-		String url = "http://python-service:5000/analyze"; // URL of the Python API
+		String url = "http://localhost:5000/analyze"; // URL of the Python API
         
         
         byte[] fileBytes = file.getBytes();
