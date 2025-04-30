@@ -44,13 +44,13 @@ def analyze_file():
 
     size_bytes = len(file_content)
 
-    is_binary = is_binary(file_content)
+    binary = is_binary(file_content)
     
     result = {
         'filename': file.filename,
         'size_bytes': size_bytes,
         'mime_type': mime_type,
-        'is_binary': is_binary,
+        'is_binary': binary,
         'md5': md5_hash,
         'sha256': sha256_hash,
         'magic_number': magic_number

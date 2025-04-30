@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 @Service
 public class FileAnalyzerService {
     
-    private final String pythonApiUrl = "http://python-service:5000/analyze"; // URL of the Python API
+    private final String pythonApiUrl = "http://localhost:5000/analyze"; // URL of the Python API
 
     public String analyzeFile(MultipartFile file) {
         RestTemplate restTemplate = new RestTemplate();
