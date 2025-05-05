@@ -1,7 +1,11 @@
+.body {
+  background-color: #282c34;
+}
 .App {
   text-align: center;
   margin: 2rem;
   font-family: Arial, sans-serif;
+  color: #0bc7ce
 }
 .dropzone {
   border: 2px dashed #00aaff;
@@ -13,6 +17,18 @@
 .error {
   color: red;
   font-weight: bold;
+}
+
+.result-table{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: "2rem";
+  border-collapse: "collapse";
+  justify-content: left;
+}
+
+.result-table tr {
+  justify-content: left;
 }
 
 .result {

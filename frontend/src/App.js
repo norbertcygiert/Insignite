@@ -7,39 +7,34 @@ import { useDropzone } from 'react-dropzone';
 function App() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const onDrop = (acceptedFiles) => {
-    setFile(acceptedFiles[0]);
-  }
+  const [error, setError] = useState(null);
 
-  const {getRootProps, getInputProps} = useDropzone({onDrop, accept: ".txt,.pdf,.md"});
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop: (acceptedFiles) => {
+      setFile(acceptedFiles[0]);
+      setResult(null);
+      setError(null);
+    },
+  });
+  const handleUpload = async () => {
+    if (!file) return;
 
-  const handleSubmit = async (e) => {
-    if(!file){
-      setError("Please select a file");
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-    setResult(null);
     const formData = new FormData();
     formData.append("file", file);
 
     try {
       const response = await axios.post("http://localhost:8080/api/send-file", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      setResult(response.data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
+      if (response && response.data) {
+        setResult(response.data);
+      } else {
+        setError("No data in the response.");
+      }
+    } catch (err) {
+      setError("Error while sending: " + err.message);
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -50,17 +45,23 @@ function App() {
       </div>
       { error && <p className="error">{error}</p> }
 
-      { loading && <p>Fetching results...</p> }
+      { error && <p style={{ color: "red" }}>{error}</p>  }
 
-      { result && ( 
-        <div className="result">
-          <h2>Result</h2>
-          <pre>{JSON.stringify(result, null, 2)}</pre>
-        </div>
+      { result && (
+        <table class="result-table">
+          <tbody>
+            {Object.entries(result).map(([key, value]) => (
+              <tr key={key}>
+                <td style={{ fontWeight: "bold", paddingRight: "1rem" }}>{key}</td>
+                <td>{String(value)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
 
-      <button onClick={handleSubmit} disabled={loading || !file}>
-        {loading ? "Fetching results..." : "Submit"}
+      <button onClick={handleUpload} disabled={!file}>
+        {file ? `Upload ${file.name}` : "No file selected"}
       </button>
 
     </div>
