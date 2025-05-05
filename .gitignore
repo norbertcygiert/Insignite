@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 logs/
-
+frontend/nohup.out
 ### STS ###
 .apt_generated
 .classpath
